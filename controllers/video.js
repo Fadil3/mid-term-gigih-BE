@@ -6,6 +6,7 @@ export const getVideos = async (req, res) => {
       .find()
       .populate('comments')
       .populate('products')
+      .populate('shops')
     res.json(videos)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -19,6 +20,11 @@ export const getDetailVideo = async (req, res) => {
       .findById(req.params.id)
       .populate('comments')
       .populate('products')
+      .populate('shops')
+    // add views
+    const incVideo = await videoSchema.findById(req.params.id)
+    incVideo.views += 1
+    await video.save()
     res.json(video)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -28,7 +34,6 @@ export const getDetailVideo = async (req, res) => {
 export const createVideo = async (req, res) => {
   const video = new videoSchema({
     title: req.body.title,
-    url: req.body.url,
     thumbnail: req.body.thumbnail,
   })
 
@@ -45,9 +50,6 @@ export const updateVideo = async (req, res) => {
     const video = await videoSchema.findById(req.params.id)
     if (req.body.title) {
       video.title = req.body.title
-    }
-    if (req.body.url) {
-      video.url = req.body.url
     }
     if (req.body.thumbnail) {
       video.thumbnail = req.body.thumbnail
