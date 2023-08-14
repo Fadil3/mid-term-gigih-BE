@@ -15,8 +15,12 @@ const videoSchema = new mongoose.Schema(
       default: 0,
     },
     shop: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Shop',
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
     },
     comments: [
       {

@@ -6,9 +6,10 @@ export const getVideos = async (req, res) => {
       .find()
       .populate('comments')
       .populate('products')
-      .populate('shops')
+    console.log(videos)
     res.json(videos)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message })
   }
 }
@@ -20,13 +21,14 @@ export const getDetailVideo = async (req, res) => {
       .findById(req.params.id)
       .populate('comments')
       .populate('products')
-      .populate('shops')
+
     // add views
     const incVideo = await videoSchema.findById(req.params.id)
     incVideo.views += 1
     await video.save()
     res.json(video)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message })
   }
 }
