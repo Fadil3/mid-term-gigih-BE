@@ -28,6 +28,8 @@ This is backend project for Tokopedia play
 - title (String, required)
 - url (String, required)
 - thumbnail (String, required)
+- shop (String, required)
+- views (String, required)
 - comments ([ObjectId], optional)
 - products ([ObjectId], optional)
 
