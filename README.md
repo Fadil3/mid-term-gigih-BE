@@ -1,4 +1,4 @@
-# Mid Term - Gigih BE
+# Final Project - Gigih BE
  
 ## About  project :
 This is backend project for Tokopedia play
